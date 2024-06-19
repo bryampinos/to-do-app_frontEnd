@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Tareas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-col size="2"></ion-col>
+    <ion-list>
+      <ion-item *ngFor="let tarea of tareasFiltradas()">
+        <ion-label>
+          <h1>{{ tarea.tituloTarea }} <ion-icon *ngIf="tarea.estadoTarea === 'completada'" name="checkmark-circle-outline" size="large" color="success"></ion-icon></h1>
+          <p>Estado : {{ tarea.estadoTarea }}</p>
+          <ion-icon name="checkbox-outline" size="large" (click)="completarTarea(tarea.idTarea)"></ion-icon>
+          <ion-icon *ngIf="tarea.completada" name="checkmark-outline" size="large" color="success"></ion-icon>
+          <ion-icon name="trash-outline" size="large" color="danger" (click)="realizarEliminacion(tarea.idTarea)"></ion-icon>
+       
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-card>
+      <ion-card-header>
+        Registrar Nueva Tarea
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Título de la Tarea</ion-label>
+          <ion-input [(ngModel)]="nuevaTarea.tituloTarea" type="text"></ion-input>
+        </ion-item>
+        <ion-button expand="block" id="present-alert" (click)="registrarTarea()">Registrar Tarea</ion-button>
+        <ion-alert
+  trigger="present-alert"
+  header="Exito al crear la tarea "
+ 
+  [buttons]="alertButtons"
+></ion-alert>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
+</ion-content>
