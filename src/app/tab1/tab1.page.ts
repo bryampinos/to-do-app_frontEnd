@@ -37,8 +37,8 @@ export class Tab1Page implements OnInit {
     this.tareaService.registrarTarea(this.nuevaTarea).subscribe(
       response => {
         console.log('Tarea registrada exitosamente', response);
-        this.cargarTareas(); // Recargar la lista de tareas
-        this.nuevaTarea = { tituloTarea: '' }; // Limpiar el formulario
+        this.cargarTareas();
+        this.nuevaTarea = { tituloTarea: '' }; 
       },
       error => {
         console.error('Error al registrar la tarea', error);
@@ -51,7 +51,7 @@ export class Tab1Page implements OnInit {
       response => {
         console.log('Tarea completada exitosamente', response);
         this.cargarTareas();
-        // Aquí puedes manejar la respuesta, por ejemplo, actualizar la lista de tareas completadas.
+ 
       },
       error => {
         console.error('Error al completar la tarea', error);
@@ -96,7 +96,6 @@ export class Tab1Page implements OnInit {
   }
 
   tareasFiltradas(): any[] {
-    // Filtrar las tareas para mostrar todas excepto las que tienen estado "eliminada"
     return this.tareas.filter(tarea => tarea.estadoTarea !== 'eliminada');
   }
 
